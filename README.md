@@ -91,6 +91,25 @@ Pick **North America**, **Europe** or **Asia** in the region menu. AmongShield s
 
 ---
 
+## ❓ FAQ
+
+**Is the PC script safe?**
+It's about 20 lines of plain text that only edits Among Us's server list (`regionInfo.json`) and saves a backup first. Open it in Notepad and read it before running, or skip it and follow the manual steps instead.
+
+**Is this a mod? Can it get my account in trouble?**
+It's not a mod. Nothing in the game is changed. Among Us has a built-in option for custom servers (regions), and that's all this uses. Your game files stay untouched.
+
+**What does the server know about me?**
+What any Among Us server sees: your in-game name, your platform (PC, phone, etc.) and your IP address. It never sees your password or account login. Server logs are deleted automatically after 14 days and are only used to fix bugs and deal with cheaters.
+
+**Who runs this?**
+It's a small community project, run for free. No ads, no payments, no data selling.
+
+**How do I stop using it?**
+Pick North America, Europe or Asia in the region menu. To remove AmongShield completely on PC, restore `regionInfo.json.backup` (rename it to `regionInfo.json`).
+
+---
+
 ## 💡 Good to know
 
 - Only games on the AmongShield region are protected. Official servers work like before.
@@ -98,5 +117,9 @@ Pick **North America**, **Europe** or **Asia** in the region menu. AmongShield s
 - 👻 **Ghosts:** after you die, haunting a player may show the wrong role. That's the shield doing its job. The game result note after each game always shows who the impostors really were.
 - This is a small free server. If it's full or down, try again later.
 - Found a bug or got kicked by mistake? Open an [issue](../../issues) and say what happened and roughly when.
+
+## 🙏 Credits
+
+AmongShield runs on a modified version of [Impostor](https://github.com/Impostor/Impostor), the open-source Among Us server (GPL-3.0). Thanks to the Impostor team for making private servers possible.
 
 <sub>Not affiliated with Innersloth. Among Us is a trademark of Innersloth LLC.</sub>
