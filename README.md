@@ -43,6 +43,17 @@ In the lobby, the host can type:
 | `/vision` | Show the current values |
 | `/vision reset` | Go back to the normal menu values |
 
+### 🔄 Host rotation
+After each game, the host role passes to the next player, so nobody is stuck hosting all night. It's **on** in public lobbies and **off** in private ones.
+
+| Command | What it does |
+|---|---|
+| `/rotate on` | Turn host rotation on (host only, in the lobby) |
+| `/rotate off` | Turn it off |
+| `/rotate` | Show whether it's on |
+
+If the new host doesn't come back from the end screen within 20 seconds, the next waiting player becomes host, so nobody gets stuck.
+
 ---
 
 ## 🚀 How to join
