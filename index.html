@@ -47,8 +47,16 @@
       <li>Open this page <b>on your phone</b> and tap the button.</li>
       <li>Among Us opens with <b>AmongShield</b> added. Pick it in the region menu (globe button) if it isn't selected.</li>
     </ol>
-    <a class="btn" id="phone" href="amongus://init?servername=AmongShield&amp;serverip=https://amongshield.duckdns.org&amp;serverport=443&amp;usedtls=false">Add AmongShield to Among Us</a>
-    <p class="note">Phone support is new. If tapping does nothing, please <a href="https://github.com/AmongShieldServer/AmongShield/issues">tell us</a> your phone model.</p>
+    <a class="btn" id="phone" href="amongus://init?servername=AmongShield&amp;serverport=443&amp;serverip=https%3A%2F%2Famongshield.duckdns.org&amp;usedtls=false">Add AmongShield to Among Us</a>
+    <p class="note">Didn't work? Try the <a href="https://impostor.github.io/Impostor/#amongshield.duckdns.org:443:https:AmongShield">official Impostor setup page</a> (already filled in for AmongShield, just tap its Android or iPhone button). Still stuck? <a href="https://github.com/AmongShieldServer/AmongShield/issues">Tell us</a> your phone model.</p>
+    <script>
+      // Chrome on Android needs an intent link that names the Among Us app.
+      if (/Android/i.test(navigator.userAgent)) {
+        document.getElementById('phone').href =
+          'intent://init?servername=AmongShield&serverport=443&serverip=https%3A%2F%2Famongshield.duckdns.org&usedtls=false' +
+          '#Intent;scheme=amongus;package=com.innersloth.spacemafia;end';
+      }
+    </script>
   </div>
 
   <h2>💻 PC (Steam, Epic, Microsoft Store)</h2>
