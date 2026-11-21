@@ -17,7 +17,7 @@
   <rect x="520" y="24" width="416" height="282" rx="14" fill="#171d40"/>
   <text x="544" y="64" font-size="22" font-weight="700" fill="#ffffff">What honest players see</text>
   <text x="544" y="92" font-size="16" fill="#9aa3d1">The normal game. Nothing changes for you.</text>
-  <g transform="translate(600,120)">
+  <g transform="translate(660,118) scale(0.85)">
     <path d="M80 0 L150 26 V92 C150 140 118 172 80 192 C42 172 10 140 10 92 V26 Z" fill="#2b6cb0"/>
     <path d="M48 98 L72 122 L114 78" fill="none" stroke="#ffffff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
