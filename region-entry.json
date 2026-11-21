@@ -1,0 +1,17 @@
+{
+  "$type": "StaticHttpRegionInfo, Assembly-CSharp",
+  "Name": "AmongShield",
+  "PingServer": "amongshield.duckdns.org",
+  "Servers": [
+    {
+      "Name": "http-1",
+      "Ip": "https://amongshield.duckdns.org",
+      "Port": 443,
+      "UseDtls": false,
+      "Players": 0,
+      "ConnectionFailures": 0
+    }
+  ],
+  "TargetServer": null,
+  "TranslateName": 1003
+}
