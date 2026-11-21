@@ -6,13 +6,14 @@
   <img src="https://img.shields.io/badge/mods-none%20needed-4fd1c5?style=for-the-badge" alt="No mods needed">
   <img src="https://img.shields.io/badge/price-free-38a169?style=for-the-badge" alt="Free">
   <img src="https://img.shields.io/badge/PC-ready-3182ce?style=for-the-badge&logo=windows&logoColor=white" alt="PC ready">
-  <img src="https://img.shields.io/badge/phone-coming%20soon-805ad5?style=for-the-badge&logo=android&logoColor=white" alt="Phone coming soon">
+  <img src="https://img.shields.io/badge/phone-ready-805ad5?style=for-the-badge&logo=android&logoColor=white" alt="Phone ready">
 </p>
 
 <p align="center">
   A free community server for <b>Among Us</b> where cheat menus can't see who the impostor is,<br>
   and cheaters get kicked and called out in chat.<br><br>
-  You play the normal game. You just pick the <b>AmongShield</b> region instead of North America, Europe or Asia.
+  You play the normal game. You just pick the <b>AmongShield</b> region instead of North America, Europe or Asia.<br><br>
+  <a href="https://amongshieldserver.github.io/AmongShield/"><b>👉 Quick setup page (PC and phone)</b></a>
 </p>
 
 ---
@@ -78,7 +79,11 @@ If the game won't load the regions afterwards, a comma or bracket is missing. De
 
 ### 📱 Phone (Android, iPhone)
 
-Coming soon: a tap-to-add link is being tested.
+1. **Open Among Us** and wait for the main menu. Leave it running.
+2. On your phone, open **[amongshieldserver.github.io/AmongShield](https://amongshieldserver.github.io/AmongShield/)** and tap **Add AmongShield to Among Us**.
+3. Back in Among Us, tap the **region button** (globe, bottom right) and pick **AmongShield**.
+
+Not in the list? Tap the button again while the game is running. If the Play Store opens, install Among Us first.
 
 ### ↩️ Going back to normal servers
 
