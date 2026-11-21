@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AmongShield: anti-cheat server for Among Us</title>
+<meta name="description" content="Free anti-cheat server for Among Us. Cheat menus can't see the impostor, cheaters get kicked and called out. No mods needed. PC and phone.">
+<meta property="og:title" content="AmongShield: anti-cheat server for Among Us">
+<meta property="og:description" content="Cheat menus can't see the impostor. Cheaters get kicked and called out. No mods needed.">
+<style>
+  :root { --bg:#0b1026; --card:#171d40; --text:#ffffff; --muted:#b9c3f5; --accent:#4fd1c5; --accent2:#2b6cb0; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:linear-gradient(135deg,#0b1026,#1b0f3a); color:var(--text);
+         font-family:"Segoe UI",Helvetica,Arial,sans-serif; line-height:1.55; min-height:100vh; }
+  main { max-width:760px; margin:0 auto; padding:24px 16px 48px; }
+  .banner { width:100%; border-radius:16px; display:block; }
+  h2 { margin:36px 0 12px; font-size:1.4rem; }
+  p, li { color:var(--muted); }
+  b, strong { color:var(--text); }
+  .card { background:var(--card); border-radius:16px; padding:20px 22px; margin:14px 0; }
+  .btn { display:block; text-align:center; text-decoration:none; font-weight:700; font-size:1.15rem;
+         padding:16px 20px; border-radius:12px; margin:14px 0 6px; color:#0b1026;
+         background:linear-gradient(90deg,var(--accent),#63b3ed); }
+  .btn.alt { background:transparent; color:var(--accent); border:2px solid var(--accent); }
+  .note { font-size:.9rem; }
+  .tag { display:inline-block; font-size:.75rem; font-weight:700; letter-spacing:.05em; padding:2px 8px;
+         border-radius:6px; background:#805ad5; color:#fff; vertical-align:middle; margin-left:6px; }
+  ol { padding-left:22px; }
+  code { background:#0f1430; padding:2px 6px; border-radius:6px; color:var(--text); }
+  footer { margin-top:40px; font-size:.8rem; color:#7f89bd; text-align:center; }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <img class="banner" src="assets/banner.svg" alt="AmongShield: the anti-cheat server for Among Us">
+
+  <p style="text-align:center;margin-top:18px">
+    A free community server where cheat menus can't see who the impostor is, and cheaters get kicked and called out in chat.
+    <b>No mods.</b> You play the normal game on the <b>AmongShield</b> region.
+  </p>
+
+  <h2>📱 Phone <span class="tag">BETA</span></h2>
+  <div class="card">
+    <ol>
+      <li>Install Among Us and open it once.</li>
+      <li>Open this page <b>on your phone</b> and tap the button.</li>
+      <li>Among Us opens with <b>AmongShield</b> added. Pick it in the region menu (globe button) if it isn't selected.</li>
+    </ol>
+    <a class="btn" id="phone" href="amongus://init?servername=AmongShield&amp;serverip=https://amongshield.duckdns.org&amp;serverport=443&amp;usedtls=false">Add AmongShield to Among Us</a>
+    <p class="note">Phone support is new. If tapping does nothing, please <a href="https://github.com/AmongShieldServer/AmongShield/issues">tell us</a> your phone model.</p>
+  </div>
+
+  <h2>💻 PC (Steam, Epic, Microsoft Store)</h2>
+  <div class="card">
+    <ol>
+      <li><b>Close Among Us.</b></li>
+      <li>Download the setup file below.</li>
+      <li>Right-click it and choose <b>Run with PowerShell</b>. If Windows asks, choose <b>Run once</b> or <b>Open</b>.</li>
+      <li>Start Among Us. <b>AmongShield</b> is already selected.</li>
+    </ol>
+    <a class="btn" href="Add-AmongShield.ps1" download>Download Add-AmongShield.ps1</a>
+    <p class="note">It only edits Among Us's server list and backs it up first. Prefer to do it by hand? See the <a href="https://github.com/AmongShieldServer/AmongShield#-how-to-join">manual steps</a>.</p>
+  </div>
+
+  <h2>✨ What you get</h2>
+  <div class="card">
+    <ul>
+      <li><b>ESP protection.</b> Cheat menus see several fake impostors and can't tell which are real.</li>
+      <li><b>Cheaters get caught.</b> They're stopped, kicked, and the whole lobby is told who it was.</li>
+      <li><b>Game result note.</b> After each game, chat shows who the impostors really were.</li>
+      <li><b>Custom vision.</b> Hosts can type <code>/vision crew 0.85</code> in the lobby (any value 0.05 to 5).</li>
+    </ul>
+  </div>
+
+  <a class="btn alt" href="https://github.com/AmongShieldServer/AmongShield">Full guide on GitHub</a>
+
+  <footer>Everyone in a lobby needs the AmongShield region. To go back, pick North America, Europe or Asia.<br>
+  Not affiliated with Innersloth. Among Us is a trademark of Innersloth LLC.</footer>
+</main>
+</body>
+</html>
