@@ -7,6 +7,7 @@
   <img src="https://img.shields.io/badge/price-free-38a169?style=for-the-badge" alt="Free">
   <img src="https://img.shields.io/badge/PC-ready-3182ce?style=for-the-badge&logo=windows&logoColor=white" alt="PC ready">
   <img src="https://img.shields.io/badge/phone-ready-805ad5?style=for-the-badge&logo=android&logoColor=white" alt="Phone ready">
+  <a href="https://www.virustotal.com/gui/file/980d659a34a2794d8929b454e98b7e7cc36ddaaafe9916a0e7618b2429f26c9f"><img src="https://img.shields.io/badge/VirusTotal-0%2F60%20clean-2ea44f?style=for-the-badge&logo=virustotal&logoColor=white" alt="VirusTotal: 0/60 clean"></a>
 </p>
 
 <p align="center">
@@ -94,7 +95,7 @@ Pick **North America**, **Europe** or **Asia** in the region menu. AmongShield s
 ## ❓ FAQ
 
 **Is the PC script safe?**
-It's about 20 lines of plain text that only edits Among Us's server list (`regionInfo.json`) and saves a backup first. Open it in Notepad and read it before running, or skip it and follow the manual steps instead.
+It's about 20 lines of plain text that only edits Among Us's server list (`regionInfo.json`) and saves a backup first. Open it in Notepad and read it before running, or skip it and follow the manual steps instead. It's also been [scanned on VirusTotal](https://www.virustotal.com/gui/file/980d659a34a2794d8929b454e98b7e7cc36ddaaafe9916a0e7618b2429f26c9f): 0 of 60 antivirus engines flagged it.
 
 **Is this a mod? Can it get my account in trouble?**
 It's not a mod. Nothing in the game is changed. Among Us has a built-in option for custom servers (regions), and that's all this uses. Your game files stay untouched.
