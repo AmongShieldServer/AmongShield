@@ -94,6 +94,9 @@ Pick **North America**, **Europe** or **Asia** in the region menu. AmongShield s
 
 ## ❓ FAQ
 
+**Does it work against MalumMenu, Sicko Menu and other cheat menus?**
+Yes, that's what it's built for. Role ESP from menus like MalumMenu sees fake impostors instead of the real ones. Cheats like forced sabotage, instant tasks, cameras from across the map and long-range kills get the cheater kicked, and menus that announce themselves (Sicko Menu, AmongUsMenu, KillNetwork, ModMenuCrew) are kicked on sight. No anticheat catches everything, and the shield hides roles but not positions.
+
 **Is the PC script safe?**
 It's about 20 lines of plain text that only edits Among Us's server list (`regionInfo.json`) and saves a backup first. Open it in Notepad and read it before running, or skip it and follow the manual steps instead. It's also been [scanned on VirusTotal](https://www.virustotal.com/gui/file/980d659a34a2794d8929b454e98b7e7cc36ddaaafe9916a0e7618b2429f26c9f): 0 of 60 antivirus engines flagged it.
 
