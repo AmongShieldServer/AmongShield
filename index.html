@@ -12,24 +12,73 @@
 <style>
   :root { --bg:#0b1026; --card:#171d40; --text:#ffffff; --muted:#b9c3f5; --accent:#4fd1c5; --accent2:#2b6cb0; }
   * { box-sizing: border-box; }
-  body { margin:0; background:linear-gradient(135deg,#0b1026,#1b0f3a); color:var(--text);
+  html { overflow-x:hidden; }
+  body { margin:0; background:#05071a; color:var(--text); overflow-x:hidden;
          font-family:"Segoe UI",Helvetica,Arial,sans-serif; line-height:1.55; min-height:100vh; }
-  main { max-width:760px; margin:0 auto; padding:24px 16px 48px; }
-  .banner { width:100%; border-radius:16px; display:block; }
-  h2 { margin:36px 0 12px; font-size:1.4rem; }
+
+  /* ---------- Space background ---------- */
+  .space { position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;
+           background:radial-gradient(ellipse at 50% 120%, #1b1150 0%, #0a0c2a 45%, #05071a 100%); }
+  .nebula { position:absolute; inset:-20%; filter:blur(40px); opacity:1;
+            background:
+              radial-gradient(38% 30% at 18% 22%, rgba(128,90,213,.42), transparent 70%),
+              radial-gradient(34% 28% at 82% 30%, rgba(49,151,149,.34), transparent 70%),
+              radial-gradient(40% 30% at 70% 82%, rgba(213,63,140,.26), transparent 70%),
+              radial-gradient(30% 24% at 25% 78%, rgba(66,153,225,.25), transparent 70%);
+            animation:nebula 46s ease-in-out infinite alternate; }
+  @keyframes nebula { from { transform:translate3d(-2%,-1%,0) scale(1); } to { transform:translate3d(2%,2%,0) scale(1.08) rotate(3deg); } }
+  #stars { position:absolute; inset:0; width:100%; height:100%; }
+  .planet { position:absolute; right:-70px; bottom:6vh; width:min(340px,62vw); opacity:.9;
+            filter:drop-shadow(0 0 40px rgba(213,63,140,.35)); animation:bob 18s ease-in-out infinite alternate; }
+  .moon { position:absolute; left:4vw; top:12vh; width:min(110px,22vw); opacity:.8;
+          filter:drop-shadow(0 0 24px rgba(79,209,197,.35)); animation:bob 14s ease-in-out infinite alternate-reverse; }
+  @keyframes bob { from { transform:translateY(-10px) rotate(-2deg); } to { transform:translateY(12px) rotate(2deg); } }
+  .rock { position:absolute; left:0; width:var(--w); top:var(--top); opacity:.75;
+          animation:drift var(--d) linear infinite; animation-delay:var(--delay); }
+  .rock svg { width:100%; display:block; animation:spin var(--spin) linear infinite; }
+  @keyframes drift { from { transform:translateX(110vw); } to { transform:translateX(-30vw); } }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .ship { position:absolute; left:0; top:62vh; width:90px; opacity:.85;
+          animation:fly 38s linear infinite; animation-delay:6s; }
+  @keyframes fly { 0% { transform:translate(-20vw,0) rotate(-6deg); } 40% { transform:translate(120vw,-18vh) rotate(-6deg); } 100% { transform:translate(120vw,-18vh); } }
+
+  /* ---------- Content ---------- */
+  main { position:relative; z-index:1; max-width:760px; margin:0 auto; padding:24px 16px 48px; }
+  .banner { width:100%; border-radius:16px; display:block; box-shadow:0 0 0 1px rgba(99,179,237,.25), 0 20px 60px rgba(79,209,197,.22);
+            animation:bannerGlow 6s ease-in-out infinite alternate; }
+  @keyframes bannerGlow { to { box-shadow:0 0 0 1px rgba(159,122,234,.35), 0 20px 70px rgba(159,122,234,.3); } }
+  h2 { margin:40px 0 12px; font-size:1.45rem; text-shadow:0 0 18px rgba(79,209,197,.45); }
   p, li { color:var(--muted); }
   b, strong { color:var(--text); }
-  .card { background:var(--card); border-radius:16px; padding:20px 22px; margin:14px 0; }
-  .btn { display:block; text-align:center; text-decoration:none; font-weight:700; font-size:1.15rem;
-         padding:16px 20px; border-radius:12px; margin:14px 0 6px; color:#0b1026;
-         background:linear-gradient(90deg,var(--accent),#63b3ed); }
-  .btn.alt { background:transparent; color:var(--accent); border:2px solid var(--accent); }
+  .intro { text-align:center; margin-top:20px; padding:16px 18px; border-radius:16px;
+           background:rgba(12,16,48,.55); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+  .card { position:relative; background:rgba(23,29,64,.68); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+          border:1px solid rgba(99,179,237,.18); border-radius:18px; padding:20px 22px; margin:14px 0;
+          box-shadow:0 12px 40px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06);
+          transition:border-color .3s, box-shadow .3s, transform .3s; }
+  .card:hover { border-color:rgba(79,209,197,.45); box-shadow:0 16px 48px rgba(0,0,0,.5), 0 0 30px rgba(79,209,197,.12); }
+  .btn { position:relative; overflow:hidden; display:block; text-align:center; text-decoration:none; font-weight:800; font-size:1.15rem;
+         padding:16px 20px; border-radius:14px; margin:14px 0 6px; color:#071022;
+         background:linear-gradient(90deg,#4fd1c5,#63b3ed,#9f7aea); background-size:200% 100%;
+         box-shadow:0 0 24px rgba(79,209,197,.45), 0 6px 18px rgba(0,0,0,.4);
+         transition:transform .2s, box-shadow .2s, background-position .6s; }
+  .btn:hover { transform:translateY(-2px); background-position:100% 0; box-shadow:0 0 36px rgba(99,179,237,.65), 0 10px 24px rgba(0,0,0,.45); }
+  .btn::after { content:""; position:absolute; top:0; left:-60%; width:40%; height:100%;
+                background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent); transform:skewX(-20deg);
+                animation:shine 4.5s ease-in-out infinite; }
+  @keyframes shine { 0%,65% { left:-60%; } 100% { left:130%; } }
+  .btn.alt { background:rgba(10,14,40,.5); color:var(--accent); border:2px solid var(--accent); box-shadow:0 0 18px rgba(79,209,197,.25); }
+  .btn.alt::after { display:none; }
+  @media (prefers-reduced-motion: reduce) {
+    .nebula, .planet, .moon, .rock, .rock svg, .ship, .banner, .btn::after { animation:none !important; }
+    .rock, .ship { display:none; }
+  }
   .note { font-size:.9rem; }
   .tag { display:inline-block; font-size:.75rem; font-weight:700; letter-spacing:.05em; padding:2px 8px;
          border-radius:6px; background:#805ad5; color:#fff; vertical-align:middle; margin-left:6px; }
   ol { padding-left:22px; }
   code { background:#0f1430; padding:2px 6px; border-radius:6px; color:var(--text); }
-  .safe { background:#0f1430; border:1px solid #2f3a7a; border-radius:12px; padding:14px 18px; margin:14px 0 4px; }
+  .safe { background:rgba(8,11,34,.75); border:1px solid #2f3a7a; border-radius:12px; padding:14px 18px; margin:14px 0 4px; }
   .safe h3 { margin:0 0 8px; font-size:1.05rem; }
   .safe ul { margin:6px 0; padding-left:20px; }
   .yes li::marker { content:"✅ "; }
@@ -43,10 +92,61 @@
 </style>
 </head>
 <body>
+<div class="space" aria-hidden="true">
+  <div class="nebula"></div>
+  <canvas id="stars"></canvas>
+
+  <!-- moon -->
+  <svg class="moon" viewBox="0 0 100 100">
+    <defs><radialGradient id="mg" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#e6fffb"/><stop offset=".55" stop-color="#81c7d4"/><stop offset="1" stop-color="#2a4365"/></radialGradient></defs>
+    <circle cx="50" cy="50" r="46" fill="url(#mg)"/>
+    <circle cx="36" cy="40" r="8" fill="#2a4365" opacity=".25"/><circle cx="62" cy="62" r="11" fill="#2a4365" opacity=".22"/>
+    <circle cx="64" cy="30" r="5" fill="#2a4365" opacity=".2"/><circle cx="34" cy="70" r="4" fill="#2a4365" opacity=".2"/>
+  </svg>
+
+  <!-- ringed planet -->
+  <svg class="planet" viewBox="0 0 300 240">
+    <defs>
+      <radialGradient id="pg" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#fbb6ce"/><stop offset=".45" stop-color="#b83280"/><stop offset="1" stop-color="#3c1361"/></radialGradient>
+      <linearGradient id="rg" x1="0" x2="1"><stop offset="0" stop-color="#9f7aea" stop-opacity=".1"/><stop offset=".5" stop-color="#e9d8fd" stop-opacity=".9"/><stop offset="1" stop-color="#4fd1c5" stop-opacity=".15"/></linearGradient>
+      <clipPath id="back"><rect x="0" y="0" width="300" height="120"/></clipPath>
+      <clipPath id="front"><rect x="0" y="120" width="300" height="120"/></clipPath>
+    </defs>
+    <g transform="rotate(-16 150 120)">
+      <ellipse cx="150" cy="120" rx="138" ry="30" fill="none" stroke="url(#rg)" stroke-width="9" clip-path="url(#back)"/>
+      <circle cx="150" cy="120" r="78" fill="url(#pg)"/>
+      <path d="M78 104 Q150 92 222 104" stroke="#fed7e2" stroke-opacity=".18" stroke-width="7" fill="none"/>
+      <path d="M74 132 Q150 146 226 132" stroke="#3c1361" stroke-opacity=".3" stroke-width="9" fill="none"/>
+      <ellipse cx="150" cy="120" rx="138" ry="30" fill="none" stroke="url(#rg)" stroke-width="9" clip-path="url(#front)"/>
+    </g>
+  </svg>
+
+  <!-- drifting asteroids -->
+  <div class="rock" style="--w:46px;--top:28vh;--d:70s;--delay:-12s;--spin:24s">
+    <svg viewBox="0 0 60 50"><path d="M8 18 L20 5 L40 4 L55 16 L52 36 L36 47 L14 44 L4 30Z" fill="#4a5568"/><path d="M8 18 L20 5 L40 4 L55 16 L30 22Z" fill="#718096"/><circle cx="22" cy="30" r="5" fill="#2d3748"/><circle cx="40" cy="34" r="3" fill="#2d3748"/></svg>
+  </div>
+  <div class="rock" style="--w:28px;--top:48vh;--d:52s;--delay:-30s;--spin:16s">
+    <svg viewBox="0 0 60 50"><path d="M6 22 L18 6 L42 8 L56 24 L46 42 L20 46Z" fill="#553c9a"/><path d="M6 22 L18 6 L42 8 L30 20Z" fill="#805ad5"/><circle cx="34" cy="32" r="5" fill="#322659"/></svg>
+  </div>
+  <div class="rock" style="--w:64px;--top:80vh;--d:95s;--delay:-50s;--spin:40s">
+    <svg viewBox="0 0 60 50"><path d="M5 25 L14 8 L34 3 L52 12 L57 30 L44 46 L18 47 L6 38Z" fill="#2c5282"/><path d="M5 25 L14 8 L34 3 L52 12 L28 20Z" fill="#4299e1" opacity=".7"/><circle cx="20" cy="33" r="6" fill="#1a365d"/><circle cx="42" cy="28" r="4" fill="#1a365d"/></svg>
+  </div>
+
+  <!-- passing ship -->
+  <svg class="ship" viewBox="0 0 120 40">
+    <defs><linearGradient id="fl" x1="1" x2="0"><stop offset="0" stop-color="#4fd1c5"/><stop offset="1" stop-color="#4fd1c5" stop-opacity="0"/></linearGradient></defs>
+    <path d="M2 20 L30 14 L30 26Z" fill="url(#fl)"/>
+    <path d="M28 12 L78 8 Q108 12 116 20 Q108 28 78 32 L28 28Z" fill="#cbd5e0"/>
+    <path d="M78 8 Q108 12 116 20 L84 20Z" fill="#edf2f7"/>
+    <path d="M86 14 Q100 15 106 20 L86 20Z" fill="#63b3ed"/>
+    <path d="M44 28 L60 38 L66 30Z" fill="#a0aec0"/><path d="M44 12 L60 2 L66 10Z" fill="#a0aec0"/>
+  </svg>
+</div>
+
 <main>
   <img class="banner" src="assets/banner.svg" alt="AmongShield: the anti-cheat server for Among Us">
 
-  <p style="text-align:center;margin-top:18px">
+  <p class="intro">
     A free community server where cheat menus can't see who the impostor is, and cheaters get kicked and called out in chat.
     <b>No mods.</b> You play the normal game on the <b>AmongShield</b> region.<br>
     Works on <b>PC, Android and iPhone</b>. PlayStation, Xbox and Switch can't use custom servers.
@@ -154,5 +254,69 @@ Read-Host 'Press Enter'</code></pre>
   <footer>Everyone in a lobby needs the AmongShield region. To go back, pick North America, Europe or Asia.<br>
   Not affiliated with Innersloth. Among Us is a trademark of Innersloth LLC.</footer>
 </main>
+<script>
+// Starfield: three depths drifting past like the view from a moving ship, with twinkle and shooting stars.
+(function () {
+  var c = document.getElementById('stars'); if (!c || !c.getContext) return;
+  var x = c.getContext('2d');
+  var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var dpr = Math.min(window.devicePixelRatio || 1, 2), W = 0, H = 0, stars = [], shots = [], last = 0, nextShot = 2;
+  var layers = [ { n: .00026, s: 5,  r: [.45, .95], a: .65 },
+                 { n: .00011, s: 14, r: [.8, 1.5], a: .9 },
+                 { n: .000045, s: 34, r: [1.2, 2.2], a: 1 } ];
+  var tints = ['#ffffff', '#ffffff', '#ffffff', '#9fe8ff', '#ffd6f5', '#fefcbf'];
+  function size() {
+    var nw = innerWidth, nh = innerHeight, regen = nw !== W || Math.abs(nh - H) > 150;  // phone address bar: keep the stars
+    W = nw; H = nh;
+    c.width = W * dpr; c.height = H * dpr; x.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (!regen) return;
+    stars = [];
+    layers.forEach(function (L, i) {
+      var n = Math.max(12, Math.round(W * H * L.n));
+      for (var k = 0; k < n; k++) stars.push({ x: Math.random() * W, y: Math.random() * H, l: i, a: L.a,
+        r: L.r[0] + Math.random() * (L.r[1] - L.r[0]), s: L.s * (.75 + Math.random() * .5),
+        p: Math.random() * 6.28, f: .6 + Math.random() * 2.2, col: tints[Math.floor(Math.random() * tints.length)] });
+    });
+  }
+  function draw(t) {
+    var dt = Math.min((t - last) / 1000, .05) || 0; last = t; var sec = t / 1000;
+    x.clearRect(0, 0, W, H);
+    var sy = window.scrollY || 0;
+    for (var i = 0; i < stars.length; i++) {
+      var s = stars[i];
+      if (!still) { s.x -= s.s * dt; if (s.x < -10) { s.x = W + 10; s.y = Math.random() * H; } }
+      var y = ((s.y - sy * .03 * (s.l + 1)) % H + H) % H;
+      var tw = still ? 1 : .6 + .4 * Math.sin(s.p + sec * s.f);
+      x.globalAlpha = s.a * tw; x.fillStyle = s.col;
+      if (s.l === 2 && !still) {           // nearest stars leave a short streak
+        var g = x.createLinearGradient(s.x, y, s.x + s.s * .35, y);
+        g.addColorStop(0, s.col); g.addColorStop(1, 'rgba(255,255,255,0)');
+        x.strokeStyle = g; x.lineWidth = s.r; x.beginPath(); x.moveTo(s.x, y); x.lineTo(s.x + s.s * .35, y); x.stroke();
+      }
+      x.beginPath(); x.arc(s.x, y, s.r, 0, 6.283); x.fill();
+      if (s.r > 1.5) { x.globalAlpha = s.a * tw * .18; x.beginPath(); x.arc(s.x, y, s.r * 3.2, 0, 6.283); x.fill(); }
+    }
+    if (!still) {
+      nextShot -= dt;
+      if (nextShot <= 0) { nextShot = 3 + Math.random() * 6;
+        shots.push({ x: W * (.3 + Math.random() * .8), y: H * Math.random() * .45, vx: -(520 + Math.random() * 320), vy: 180 + Math.random() * 140, life: 1 }); }
+      for (var j = shots.length - 1; j >= 0; j--) {
+        var m = shots[j]; m.x += m.vx * dt; m.y += m.vy * dt; m.life -= dt * .9;
+        if (m.life <= 0) { shots.splice(j, 1); continue; }
+        var tx = m.x - m.vx * .18, ty = m.y - m.vy * .18;
+        var sg = x.createLinearGradient(m.x, m.y, tx, ty);
+        sg.addColorStop(0, 'rgba(255,255,255,' + m.life + ')'); sg.addColorStop(.3, 'rgba(159,232,255,' + m.life * .6 + ')'); sg.addColorStop(1, 'rgba(159,232,255,0)');
+        x.globalAlpha = 1; x.strokeStyle = sg; x.lineWidth = 2; x.lineCap = 'round';
+        x.beginPath(); x.moveTo(m.x, m.y); x.lineTo(tx, ty); x.stroke();
+      }
+    }
+    x.globalAlpha = 1;
+    if (!still) requestAnimationFrame(draw);
+  }
+  size(); addEventListener('resize', size);
+  if (still) { draw(0); addEventListener('resize', function () { draw(0); }); addEventListener('scroll', function () { draw(0); }, { passive: true }); }
+  else requestAnimationFrame(function (t) { last = t; draw(t); });
+})();
+</script>
 </body>
 </html>
