@@ -53,19 +53,15 @@
   @keyframes fly { 0% { transform:translate(-20vw,0) rotate(-6deg); } 40% { transform:translate(120vw,-18vh) rotate(-6deg); } 100% { transform:translate(120vw,-18vh); } }
 
   /* ---------- Content ---------- */
-  main { position:relative; z-index:1; max-width:760px; margin:0 auto; padding:24px 16px 48px; }
-  .hero { position:relative; margin:0 -16px; }
-  .hero::before { content:""; position:absolute; inset:8% 6%; border-radius:50%; z-index:-1;
-                  background:radial-gradient(closest-side, rgba(79,209,197,.28), rgba(128,90,213,.18) 60%, transparent);
-                  filter:blur(30px); }
-  .banner { width:100%; height:auto; aspect-ratio:1168/784; border-radius:22px; display:block;
-            box-shadow:0 0 0 1px rgba(99,179,237,.25), 0 20px 60px rgba(79,209,197,.22);
-            animation:bannerGlow 6s ease-in-out infinite alternate; }
-  @media (min-width:800px) { .hero { margin:0 -60px; } }
-  @media (max-width:520px) { .banner { border-radius:14px; } .hero { margin:0 -8px; } }
+  main { position:relative; z-index:1; max-width:760px; margin:0 auto; padding:4px 16px 48px; }
+  /* Banner: compact, trimmed top and bottom, edges faded into the animated background (no frame or glow). */
+  .hero { max-width:580px; margin:0 auto; }
+  .banner { width:100%; height:auto; aspect-ratio:2.2/1; object-fit:cover; object-position:50% 52%; display:block;
+            -webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%, #000 78%, transparent 100%);
+                    mask-image:radial-gradient(ellipse 50% 50% at 50% 50%, #000 78%, transparent 100%); }
+  .intro { margin-top:2px !important; }
   footer .logo { width:44px; height:44px; border-radius:12px; display:block; margin:0 auto 10px;
                  box-shadow:0 0 18px rgba(79,209,197,.35); }
-  @keyframes bannerGlow { to { box-shadow:0 0 0 1px rgba(159,122,234,.35), 0 20px 70px rgba(159,122,234,.3); } }
   h2 { margin:40px 0 12px; font-size:1.45rem; text-shadow:0 0 18px rgba(79,209,197,.45); }
   p, li { color:var(--muted); }
   b, strong { color:var(--text); }
@@ -89,7 +85,7 @@
   .btn.alt { background:rgba(10,14,40,.5); color:var(--accent); border:2px solid var(--accent); box-shadow:0 0 18px rgba(79,209,197,.25); }
   .btn.alt::after { display:none; }
   @media (prefers-reduced-motion: reduce) {
-    .nebula, .planet, .moon, .rock, .rock svg, .ship, .banner, .btn::after { animation:none !important; }
+    .nebula, .planet, .moon, .rock, .rock svg, .ship, .btn::after { animation:none !important; }
     .rock, .ship { display:none; }
   }
   .note { font-size:.9rem; }
