@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.svg" alt="AmongShield: the anti-cheat server for Among Us" width="100%">
+  <img src="assets/hero.jpg" alt="AmongShield: the anti-cheat server for Among Us" width="100%">
 </p>
 
 <p align="center">

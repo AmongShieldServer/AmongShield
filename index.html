@@ -9,6 +9,16 @@
 <meta name="keywords" content="Among Us anticheat, Among Us anti-cheat, MalumMenu, Sicko Menu, Among Us cheats, Among Us ESP, private server, Impostor server">
 <meta property="og:title" content="AmongShield: anti-cheat server for Among Us">
 <meta property="og:description" content="Cheat menus can't see the impostor. Cheaters get kicked and called out. No mods needed.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://amongshieldserver.github.io/AmongShield/">
+<meta property="og:image" content="https://amongshieldserver.github.io/AmongShield/assets/og.jpg">
+<meta property="og:image:width" content="1168">
+<meta property="og:image:height" content="611">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b1026">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/icon-48.png">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
 <style>
   :root { --bg:#0b1026; --card:#171d40; --text:#ffffff; --muted:#b9c3f5; --accent:#4fd1c5; --accent2:#2b6cb0; }
   * { box-sizing: border-box; }
@@ -44,8 +54,17 @@
 
   /* ---------- Content ---------- */
   main { position:relative; z-index:1; max-width:760px; margin:0 auto; padding:24px 16px 48px; }
-  .banner { width:100%; border-radius:16px; display:block; box-shadow:0 0 0 1px rgba(99,179,237,.25), 0 20px 60px rgba(79,209,197,.22);
+  .hero { position:relative; margin:0 -16px; }
+  .hero::before { content:""; position:absolute; inset:8% 6%; border-radius:50%; z-index:-1;
+                  background:radial-gradient(closest-side, rgba(79,209,197,.28), rgba(128,90,213,.18) 60%, transparent);
+                  filter:blur(30px); }
+  .banner { width:100%; height:auto; aspect-ratio:1168/784; border-radius:22px; display:block;
+            box-shadow:0 0 0 1px rgba(99,179,237,.25), 0 20px 60px rgba(79,209,197,.22);
             animation:bannerGlow 6s ease-in-out infinite alternate; }
+  @media (min-width:800px) { .hero { margin:0 -60px; } }
+  @media (max-width:520px) { .banner { border-radius:14px; } .hero { margin:0 -8px; } }
+  footer .logo { width:44px; height:44px; border-radius:12px; display:block; margin:0 auto 10px;
+                 box-shadow:0 0 18px rgba(79,209,197,.35); }
   @keyframes bannerGlow { to { box-shadow:0 0 0 1px rgba(159,122,234,.35), 0 20px 70px rgba(159,122,234,.3); } }
   h2 { margin:40px 0 12px; font-size:1.45rem; text-shadow:0 0 18px rgba(79,209,197,.45); }
   p, li { color:var(--muted); }
@@ -144,7 +163,12 @@
 </div>
 
 <main>
-  <img class="banner" src="assets/banner.svg" alt="AmongShield: the anti-cheat server for Among Us">
+  <div class="hero">
+    <picture>
+      <source srcset="assets/hero.webp" type="image/webp">
+      <img class="banner" src="assets/hero.jpg" width="1168" height="784" alt="AmongShield: the anti-cheat server for Among Us">
+    </picture>
+  </div>
 
   <p class="intro">
     A free community server where cheat menus can't see who the impostor is, and cheaters get kicked and called out in chat.
@@ -251,7 +275,7 @@ Read-Host 'Press Enter'</code></pre>
 
   <a class="btn alt" href="https://github.com/AmongShieldServer/AmongShield">Full guide on GitHub</a>
 
-  <footer>Everyone in a lobby needs the AmongShield region. To go back, pick North America, Europe or Asia.<br>
+  <footer><img class="logo" src="assets/icon-180.png" width="44" height="44" alt="">Everyone in a lobby needs the AmongShield region. To go back, pick North America, Europe or Asia.<br>
   Not affiliated with Innersloth. Among Us is a trademark of Innersloth LLC.</footer>
 </main>
 <script>
