@@ -29,6 +29,15 @@
          border-radius:6px; background:#805ad5; color:#fff; vertical-align:middle; margin-left:6px; }
   ol { padding-left:22px; }
   code { background:#0f1430; padding:2px 6px; border-radius:6px; color:var(--text); }
+  .safe { background:#0f1430; border:1px solid #2f3a7a; border-radius:12px; padding:14px 18px; margin:14px 0 4px; }
+  .safe h3 { margin:0 0 8px; font-size:1.05rem; }
+  .safe ul { margin:6px 0; padding-left:20px; }
+  .yes li::marker { content:"✅ "; }
+  .no li::marker { content:"🚫 "; }
+  details { margin-top:10px; }
+  summary { cursor:pointer; color:var(--accent); font-weight:700; }
+  pre { background:#070b1c; border-radius:10px; padding:12px; overflow-x:auto; font-size:.8rem; line-height:1.45; color:#e2e8ff; }
+  pre code { background:none; padding:0; }
   footer { margin-top:40px; font-size:.8rem; color:#7f89bd; text-align:center; }
   a { color:var(--accent); }
 </style>
@@ -71,6 +80,59 @@
       <li>Start Among Us. <b>AmongShield</b> is already selected.</li>
     </ol>
     <a class="btn" href="Add-AmongShield.ps1" download>Download Add-AmongShield.ps1</a>
+
+    <div class="safe">
+      <h3>🔒 What you're downloading, and why it's safe</h3>
+      <p class="note" style="margin:0 0 6px">It's not a program or a mod. It's a <b>23-line text file</b> (a PowerShell script, about 1.5 KB) that adds AmongShield to the game's server list. That's the same list you pick North America, Europe or Asia from.</p>
+      <ul class="yes note">
+        <li>Saves a backup of your server list first (<code>regionInfo.json.backup</code>).</li>
+        <li>Adds one entry, <b>AmongShield</b>, and selects it.</li>
+        <li>You can open it in Notepad and read every line before running it. The full code is below.</li>
+      </ul>
+      <ul class="no note">
+        <li>Doesn't download anything or connect to the internet.</li>
+        <li>Doesn't need admin rights, and doesn't install anything or keep running afterward.</li>
+        <li>Doesn't touch your game files, your account or your saved settings. Only the server list changes.</li>
+        <li>Doesn't read or send any personal information.</li>
+      </ul>
+      <details>
+        <summary>Show the full code (every line)</summary>
+<pre><code># Adds the "AmongShield" server to Among Us (PC). Close Among Us first, then right-click -&gt; Run with PowerShell.
+# It only edits Among Us's region list (regionInfo.json); a backup is saved next to it.
+$ErrorActionPreference = 'Stop'
+$file = Join-Path $env:USERPROFILE 'AppData\LocalLow\Innersloth\Among Us\regionInfo.json'
+if (-not (Test-Path $file)) { Write-Host 'Start Among Us once (to the main menu), close it, then run this again.'; Read-Host 'Press Enter'; exit 1 }
+if (Get-Process 'Among Us' -ErrorAction SilentlyContinue) { Write-Host 'Close Among Us first, then run this again.'; Read-Host 'Press Enter'; exit 1 }
+
+Copy-Item $file "$file.backup" -Force
+$json = Get-Content $file -Raw | ConvertFrom-Json
+$json.Regions = @($json.Regions | Where-Object { $_.Name -ne 'AmongShield' })
+$region = [pscustomobject]@{
+    '$type'        = 'StaticHttpRegionInfo, Assembly-CSharp'
+    Name           = 'AmongShield'
+    PingServer     = 'amongshield.duckdns.org'
+    Servers        = @([pscustomobject]@{ Name = 'http-1'; Ip = 'https://amongshield.duckdns.org'; Port = 443; UseDtls = $false; Players = 0; ConnectionFailures = 0 })
+    TargetServer   = $null
+    TranslateName  = 1003
+}
+$json.Regions += $region
+$json.CurrentRegionIdx = $json.Regions.Count - 1
+($json | ConvertTo-Json -Depth 10 -Compress) | Set-Content $file -Encoding UTF8
+Write-Host 'Done! Start Among Us; the region "AmongShield" is selected. To play on normal servers again, pick North America/Europe/Asia in the region menu.'
+Read-Host 'Press Enter'</code></pre>
+        <p class="note"><b>In plain English:</b></p>
+        <ol class="note">
+          <li><b>Lines 3–6:</b> find the game's server list file and check that Among Us is closed.</li>
+          <li><b>Line 8:</b> make the backup copy.</li>
+          <li><b>Lines 9–10:</b> read the list and remove any old AmongShield entry, so running it twice doesn't add a duplicate.</li>
+          <li><b>Lines 11–19:</b> add the AmongShield entry (its name and address, <code>amongshield.duckdns.org</code>).</li>
+          <li><b>Lines 20–21:</b> select it and save the list.</li>
+          <li><b>Lines 22–23:</b> say "Done!" and wait for you to press Enter.</li>
+        </ol>
+      </details>
+    </div>
+
+    <p class="note">To undo it, just pick North America, Europe or Asia in the game. To remove it completely, go to <code>%USERPROFILE%\AppData\LocalLow\Innersloth\Among Us</code> and rename <code>regionInfo.json.backup</code> back to <code>regionInfo.json</code>.</p>
     <p class="note">It only edits Among Us's server list and backs it up first. <a href="https://www.virustotal.com/gui/file/980d659a34a2794d8929b454e98b7e7cc36ddaaafe9916a0e7618b2429f26c9f">Scanned on VirusTotal</a>: 0 of 60 antivirus engines flagged it. Prefer to do it by hand? See the <a href="https://github.com/AmongShieldServer/AmongShield#-how-to-join">manual steps</a>.</p>
   </div>
 
