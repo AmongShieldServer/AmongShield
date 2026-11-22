@@ -6,15 +6,16 @@
   <img src="https://img.shields.io/badge/mods-none%20needed-4fd1c5?style=for-the-badge" alt="No mods needed">
   <img src="https://img.shields.io/badge/price-free-38a169?style=for-the-badge" alt="Free">
   <img src="https://img.shields.io/badge/PC-ready-3182ce?style=for-the-badge&logo=windows&logoColor=white" alt="PC ready">
-  <img src="https://img.shields.io/badge/phone-ready-805ad5?style=for-the-badge&logo=android&logoColor=white" alt="Phone ready">
+  <img src="https://img.shields.io/badge/Android%20%26%20iPhone-ready-805ad5?style=for-the-badge" alt="Android and iPhone ready">
   <a href="https://www.virustotal.com/gui/file/980d659a34a2794d8929b454e98b7e7cc36ddaaafe9916a0e7618b2429f26c9f"><img src="https://img.shields.io/badge/VirusTotal-0%2F60%20clean-2ea44f?style=for-the-badge&logo=virustotal&logoColor=white" alt="VirusTotal: 0/60 clean"></a>
 </p>
 
 <p align="center">
   A free community server for <b>Among Us</b> where cheat menus can't see who the impostor is,<br>
   and cheaters get kicked and called out in chat.<br><br>
-  You play the normal game. You just pick the <b>AmongShield</b> region instead of North America, Europe or Asia.<br><br>
-  <a href="https://amongshieldserver.github.io/AmongShield/"><b>👉 Quick setup page (PC and phone)</b></a>
+  You play the normal game. You just pick the <b>AmongShield</b> region instead of North America, Europe or Asia.<br>
+  Works on <b>PC, Android and iPhone</b>.<br><br>
+  <a href="https://amongshieldserver.github.io/AmongShield/"><b>👉 Quick setup page (PC, Android, iPhone)</b></a>
 </p>
 
 ---
@@ -28,6 +29,25 @@ Cheat menus that show roles are fed fake impostors. Every cheater sees several i
 
 ### 🚨 Cheaters get caught
 The server watches every game for things that aren't possible without cheats. Cheaters get stopped, kicked from the lobby, and everyone in the lobby gets a chat message saying who it was.
+
+Kicked on sight:
+- Forcing sabotages as a crewmate
+- Fixing sabotages, reporting bodies or pressing the button as a ghost
+- Faking a Medbay scan as the impostor
+- Venting without a role that can vent
+- Using cameras away from Security
+- Making the lights unfixable
+- Long-range kills and instant tasks
+
+Identified and reported: the cheat is blocked and the lobby is told who's suspected of cheating:
+- Speed hacks and teleports
+- Moving or killing during a meeting
+- Calling meetings from across the map, past the button limit or before the cooldown
+- Reporting bodies from far away
+- Engineer vent cheats (endless vent time, no cooldown)
+- Fixing sabotages from across the map or from inside a vent
+- Kicking everyone out of vents
+- Chatting while alive outside a meeting
 
 ### 📋 Game result note
 After each game, the lobby chat shows who the impostors really were.
@@ -106,7 +126,7 @@ Pick **North America**, **Europe** or **Asia** in the region menu. AmongShield s
 ## ❓ FAQ
 
 **Does it work against MalumMenu, Sicko Menu and other cheat menus?**
-Yes, that's what it's built for. Role ESP from menus like MalumMenu sees fake impostors instead of the real ones. Cheats like forced sabotage, instant tasks, cameras from across the map and long-range kills get the cheater kicked, and menus that announce themselves (Sicko Menu, AmongUsMenu, KillNetwork, ModMenuCrew) are kicked on sight. No anticheat catches everything, and the shield hides roles but not positions.
+Yes, that's what it's built for. Role ESP from menus like MalumMenu sees fake impostors instead of the real ones. Cheats like forced sabotage, instant tasks, cameras from across the map, long-range kills, ghost actions and fake venting get the cheater kicked. Speed hacks, teleports, meeting cheats and vent cheats are blocked and the cheater is named in chat, and menus that announce themselves (Sicko Menu, AmongUsMenu, KillNetwork, ModMenuCrew) are kicked on sight. No anticheat catches everything, and the shield hides roles but not positions.
 
 **Is the PC script safe?**
 It's about 20 lines of plain text that only edits Among Us's server list (`regionInfo.json`) and saves a backup first. Open it in Notepad and read it before running, or skip it and follow the manual steps instead. It's also been [scanned on VirusTotal](https://www.virustotal.com/gui/file/980d659a34a2794d8929b454e98b7e7cc36ddaaafe9916a0e7618b2429f26c9f): 0 of 60 antivirus engines flagged it.
@@ -130,6 +150,8 @@ Pick North America, Europe or Asia in the region menu. To remove AmongShield com
 - Only games on the AmongShield region are protected. Official servers work like before.
 - The shield hides **roles**, not positions. A cheater can still see where people are, but not who the impostor is.
 - 👻 **Ghosts:** after you die, haunting a player may show the wrong role. That's the shield doing its job. The game result note after each game always shows who the impostors really were.
+- 💬 Chat messages over 100 characters, or with line breaks or formatting codes, are blocked.
+- 🎮 Console players (PlayStation, Xbox, Switch) can't join: consoles can't use custom servers.
 - This is a small free server. If it's full or down, try again later.
 - Found a bug or got kicked by mistake? Open an [issue](../../issues) and say what happened and roughly when.
 
