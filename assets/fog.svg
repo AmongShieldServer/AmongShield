@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="360" viewBox="0 0 960 360" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <radialGradient id="light" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#fefcbf" stop-opacity=".30"/>
+      <stop offset=".75" stop-color="#fefcbf" stop-opacity=".14"/>
+      <stop offset="1" stop-color="#fefcbf" stop-opacity="0"/>
+    </radialGradient>
+    <!-- one floor plan, drawn in both panels: 4 rooms, doorways as gaps -->
+    <g id="plan" fill="none" stroke="#4a5aa8" stroke-width="5" stroke-linecap="round">
+      <path d="M0 0 H130 M160 0 H380 V170 H0 Z"/>
+      <path d="M180 0 V30 M180 60 V112 M180 140 V170"/>
+      <path d="M0 88 H60 M90 88 H180 M180 88 H270 M300 88 H380"/>
+    </g>
+  </defs>
+  <rect width="960" height="360" rx="18" fill="#0f1430"/>
+
+  <!-- left panel: other servers -->
+  <rect x="24" y="24" width="440" height="312" rx="14" fill="#171d40"/>
+  <text x="48" y="62" font-size="22" font-weight="700" fill="#ffffff">Zoomed-out cheat, other servers</text>
+  <text x="48" y="90" font-size="16" fill="#9aa3d1">Everyone, everywhere, through every wall.</text>
+  <g transform="translate(54,132)">
+    <rect x="-6" y="-6" width="392" height="182" rx="8" fill="#10163a"/>
+    <use href="#plan"/>
+    <circle cx="90" cy="45" r="11" fill="#ffffff" stroke="#4fd1c5" stroke-width="4"/>
+    <circle cx="140" cy="62" r="10" fill="#38a169"/>
+    <circle cx="214" cy="40" r="10" fill="#e53e3e"/>
+    <circle cx="330" cy="138" r="10" fill="#d69e2e"/>
+    <circle cx="300" cy="36" r="10" fill="#805ad5"/>
+    <circle cx="48" cy="140" r="10" fill="#3182ce"/>
+    <circle cx="232" cy="128" r="10" fill="#dd6b20"/>
+  </g>
+  <text x="48" y="326" font-size="15" fill="#fc8181" font-weight="700">The cheater knows where all 6 players are.</text>
+
+  <!-- arrow -->
+  <path d="M478 180 H500" stroke="#4fd1c5" stroke-width="4"/>
+  <path d="M496 170 L510 180 L496 190 Z" fill="#4fd1c5"/>
+
+  <!-- right panel: AmongShield -->
+  <rect x="520" y="24" width="416" height="312" rx="14" fill="#171d40"/>
+  <text x="544" y="62" font-size="22" font-weight="700" fill="#ffffff">Same cheat on AmongShield</text>
+  <text x="544" y="90" font-size="16" fill="#9aa3d1">Only what you could really see.</text>
+  <g transform="translate(538,132)">
+    <rect x="-6" y="-6" width="392" height="182" rx="8" fill="#0a0e28"/>
+    <circle cx="90" cy="45" r="92" fill="url(#light)"/>
+    <use href="#plan"/>
+    <circle cx="90" cy="45" r="11" fill="#ffffff" stroke="#4fd1c5" stroke-width="4"/>
+    <circle cx="140" cy="62" r="10" fill="#38a169"/>
+    <!-- in range but behind the wall: not sent -->
+    <circle cx="214" cy="40" r="10" fill="none" stroke="#9aa3d1" stroke-width="2" stroke-dasharray="4 4"/>
+    <text x="230" y="30" font-size="13" fill="#9aa3d1">behind a wall</text>
+    <text x="250" y="140" font-size="13" fill="#9aa3d1">out of sight: not sent</text>
+  </g>
+  <text x="544" y="326" font-size="15" fill="#9ae6b4" font-weight="700">The rest of the map is empty. Honest play is unchanged.</text>
+</svg>
