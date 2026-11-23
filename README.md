@@ -103,22 +103,24 @@ If the new host doesn't come back from the end screen within 20 seconds, the nex
 ### 💻 PC (Steam, Epic, itch.io, Microsoft Store / Xbox app): easy way
 
 1. **Close Among Us.**
-2. Download [`Add-AmongShield.ps1`](Add-AmongShield.ps1) (open it, then click the download button ⤓).
-3. Open **PowerShell** (press the Start key, type `PowerShell`, press Enter), paste this line and press Enter:
+2. Open **PowerShell**: press the Start key, type `PowerShell`, press Enter.
+3. Paste this line and press Enter:
    ```
-   powershell -ExecutionPolicy Bypass -File "$env:USERPROFILE\Downloads\Add-AmongShield.ps1"
+   irm https://amongshieldserver.github.io/AmongShield/Add-AmongShield.ps1 | iex
    ```
-   Windows blocks downloaded scripts from running by double-click or "Run with PowerShell" (the window just flashes and closes). This line runs only this one file, this one time, and doesn't change any Windows settings. Saved it somewhere other than Downloads? Change the path.
 4. When it says **Server successfully added!**, start Among Us. The **AmongShield** region is already selected. Create or join a game as usual.
 
-It works with every PC version: Steam, Epic Games, itch.io and the Microsoft Store / Xbox app. The script only edits Among Us's server list and saves a backup of it first (in `%LOCALAPPDATA%\AmongShield-backup`). If anything goes wrong, a message tells you what to do. It's about 60 lines, so feel free to read it before running it.
+That line fetches the setup script, [`Add-AmongShield.ps1`](Add-AmongShield.ps1), from the setup page and runs it right away, without saving a file. It works with every PC version: Steam, Epic Games, itch.io and the Microsoft Store / Xbox app. The script only edits Among Us's server list and saves a backup of it first (in `%LOCALAPPDATA%\AmongShield-backup`). If anything goes wrong, a message tells you what to do. It's about 60 lines, so feel free to read it first.
+
+**Prefer to download it and read it first?** Download [`Add-AmongShield.ps1`](Add-AmongShield.ps1), then in PowerShell type `powershell -ExecutionPolicy Bypass -File ` (with a space at the end), drag the downloaded file into the window and press Enter. (Double-clicking or *Run with PowerShell* won't work: Windows blocks downloaded scripts that way.)
 
 #### 🩹 Script not working?
 
-- **The window flashes and closes, or it says "running scripts is disabled" / "not digitally signed":** Windows blocks downloaded scripts when you double-click or use *Run with PowerShell*. Use the pasted line from step 3 instead.
-- **"Cannot find path" or "does not exist":** the file isn't in Downloads, or it was saved as `Add-AmongShield (1).ps1`. Easiest fix: in PowerShell type `powershell -ExecutionPolicy Bypass -File ` (with a space at the end), then **drag the downloaded file into the PowerShell window** to paste its exact location, and press Enter.
+- **The window flashes and closes, or it says "running scripts is disabled" / "not digitally signed":** Windows blocks downloaded scripts when you double-click or use *Run with PowerShell*. Use the line from step 3 instead.
+- **"Cannot find path" or "does not exist"** (downloaded-file method): type `powershell -ExecutionPolicy Bypass -File ` (with a space at the end), then **drag the downloaded file into the PowerShell window** to paste its exact location, and press Enter. Or just use the line from step 3, which needs no file.
 - **"Among Us is still open":** close the game completely. Check the taskbar and the hidden icons next to the clock, or end **Among Us** in Task Manager (Ctrl + Shift + Esc).
-- **The browser or antivirus deleted or blocked the download:** choose **Keep** in the browser's download list, or use the no-script option below.
+- **The line from step 3 shows a red error about the connection:** check your internet, or use the downloaded file or the no-script option below.
+- **The browser or antivirus deleted or blocked the download:** choose **Keep** in the browser's download list, use the line from step 3 (no download needed), or use the no-script option below.
 - **"Server list wasn't found":** start Among Us once, wait for the main menu, close it, and run the line again.
 - **Something else?** The pop-up says what went wrong. Open an [issue](../../issues) and say what it says.
 
