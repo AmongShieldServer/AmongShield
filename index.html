@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="msvalidate.01" content="70B6AE999FE633CDA6F54219DDE15DFC">
 <title>AmongShield: anti-cheat server for Among Us</title>
-<meta name="description" content="Free Among Us anti-cheat server. Protects against MalumMenu, Sicko Menu and other cheat menus: ESP can't see the impostor, cheaters get kicked and called out. No mods needed. PC, Android and iPhone.">
-<meta name="keywords" content="Among Us anticheat, Among Us anti-cheat, MalumMenu, Sicko Menu, Among Us cheats, Among Us ESP, private server, Impostor server">
+<meta name="description" content="Free Among Us anti-cheat server. Protects against MalumMenu, Sicko Menu and other cheat menus: ESP can't see the impostor, zoom hacks and wallhacks see an empty map, cheaters get kicked and called out. No mods needed. PC, Android and iPhone.">
+<meta name="keywords" content="Among Us anticheat, Among Us anti-cheat, MalumMenu, Sicko Menu, Among Us cheats, Among Us ESP, Among Us zoom hack, Among Us wallhack, private server, Impostor server">
 <meta property="og:title" content="AmongShield: anti-cheat server for Among Us">
-<meta property="og:description" content="Cheat menus can't see the impostor. Cheaters get kicked and called out. No mods needed.">
+<meta property="og:description" content="Cheat menus can't see the impostor, zoom hacks see an empty map, cheaters get kicked and called out. No mods needed.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://amongshieldserver.github.io/AmongShield/">
 <meta property="og:image" content="https://amongshieldserver.github.io/AmongShield/assets/og.jpg">
@@ -167,10 +167,24 @@
   </div>
 
   <p class="intro">
-    A free community server where cheat menus can't see who the impostor is, and cheaters get kicked and called out in chat.
+    A free community server where cheat menus can't see who the impostor is, <b>can't zoom out or see through walls</b>, and cheaters get kicked and called out in chat.
     <b>No mods.</b> You play the normal game on the <b>AmongShield</b> region.<br>
     Works on <b>PC, Android and iPhone</b>. PlayStation, Xbox and Switch can't use custom servers.
   </p>
+
+  <h2>🌫️ Anti-zoom fog <span class="tag">NEW</span></h2>
+  <div class="card fog">
+    <p style="margin-top:0"><b>Zoom hacks and wallhacks see an empty map.</b></p>
+    <p>Most anti-cheats try to catch a cheater after the damage is done. AmongShield makes sure the information never reaches the cheater in the first place: the server only sends your game the positions of players <b>you could actually see</b>, inside your vision and not hidden behind a wall.</p>
+    <img src="assets/fog.svg" alt="A zoomed-out cheat sees every player on other servers. On AmongShield it only sees the players inside its own vision." style="width:100%;height:auto;display:block;margin:14px 0;border-radius:12px">
+    <ul class="yes note">
+      <li><b>Stops zoom-out, see-through-walls and player radar</b> from cheat menus like MalumMenu. There's nothing to show them.</li>
+      <li><b>Honest players see nothing different.</b> People step out of the shadows exactly like they always do.</li>
+      <li><b>Admin, cameras, binoculars, Tracker and Detective</b> still work: whoever is using them gets everyone's real position.</li>
+      <li><b>On in every lobby.</b> The host can type <code>/fog off</code> in the lobby to turn it off, and <code>/fog on</code> to bring it back.</li>
+    </ul>
+    <p class="note" style="margin-bottom:0">AmongShield is the only Among Us anti-cheat that can do this right now.</p>
+  </div>
 
   <h2>📱 Phone (Android, iPhone)</h2>
   <div class="card">
@@ -259,6 +273,7 @@ Read-Host 'Press Enter'</code></pre>
   <h2>✨ What you get</h2>
   <div class="card">
     <ul>
+      <li><b>Anti-zoom fog.</b> <span class="tag">NEW</span> Your game only gets the positions of players you could really see. Zoom hacks and wallhacks see an empty map.</li>
       <li><b>ESP protection.</b> Cheat menus like MalumMenu see several fake impostors and can't tell which are real.</li>
       <li><b>Cheaters get caught.</b> They're stopped, kicked, and the whole lobby is told who it was: forcing sabotages as a crewmate, acting as a ghost, faking a Medbay scan, venting without a venting role, cameras away from Security, unfixable lights, long-range kills and instant tasks.</li>
       <li><b>More cheats called out.</b> Speed hacks, teleports, moving or killing during a meeting, calling meetings from across the map, far-away reports, Engineer vent cheats, remote repairs, kicking everyone out of vents and chatting while alive are blocked, and the lobby is told who's suspected.</li>
