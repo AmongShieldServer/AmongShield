@@ -8,7 +8,7 @@
   <img src="https://img.shields.io/badge/price-free-38a169?style=for-the-badge" alt="Free">
   <img src="https://img.shields.io/badge/PC-ready-3182ce?style=for-the-badge&logo=windows&logoColor=white" alt="PC ready">
   <img src="https://img.shields.io/badge/Android%20%26%20iPhone-ready-805ad5?style=for-the-badge" alt="Android and iPhone ready">
-  <a href="https://www.virustotal.com/gui/file/eff11ee4d9e553b369aa2b47f783736d15b054c46d8559591e5f5ab33fdb545c"><img src="https://img.shields.io/badge/VirusTotal-report-2ea44f?style=for-the-badge&logo=virustotal&logoColor=white" alt="VirusTotal report"></a>
+  <a href="https://www.virustotal.com/gui/file/eff11ee4d9e553b369aa2b47f783736d15b054c46d8559591e5f5ab33fdb545c"><img src="https://img.shields.io/badge/VirusTotal-0%2F62%20clean-2ea44f?style=for-the-badge&logo=virustotal&logoColor=white" alt="VirusTotal: 0/62 clean"></a>
 </p>
 
 <p align="center">
@@ -166,7 +166,7 @@ Pick **North America**, **Europe** or **Asia** in the region menu. AmongShield s
 Yes, that's what it's built for. Role ESP from menus like MalumMenu sees fake impostors instead of the real ones. Cheats like forced sabotage, instant tasks, cameras from across the map, long-range kills, ghost actions and fake venting get the cheater kicked. Speed hacks, teleports, meeting cheats and vent cheats are blocked and the cheater is named in chat, and menus that announce themselves (Sicko Menu, AmongUsMenu, KillNetwork, ModMenuCrew) are kicked on sight. Zoom hacks, wallhacks and player radar see only the players you could see anyway, thanks to the anti-zoom fog. No anticheat catches everything.
 
 **Is the PC script safe?**
-It's about 60 lines of plain text that only edits Among Us's server list (`regionInfo.json`) and saves a backup first. Open it in Notepad and read it before running, or skip it and follow the manual steps instead. You can also check it on [VirusTotal](https://www.virustotal.com/gui/file/eff11ee4d9e553b369aa2b47f783736d15b054c46d8559591e5f5ab33fdb545c).
+It's about 60 lines of plain text that only edits Among Us's server list (`regionInfo.json`) and saves a backup first. Open it in Notepad and read it before running, or skip it and follow the manual steps instead. It's also been [scanned on VirusTotal](https://www.virustotal.com/gui/file/eff11ee4d9e553b369aa2b47f783736d15b054c46d8559591e5f5ab33fdb545c): 0 of 62 antivirus engines flagged it.
 
 **Is this a mod? Can it get my account in trouble?**
 It's not a mod. Nothing in the game is changed. Among Us has a built-in option for custom servers (regions), and that's all this uses. Your game files stay untouched.
