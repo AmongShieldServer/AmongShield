@@ -210,10 +210,11 @@
     <ol>
       <li><b>Close Among Us.</b></li>
       <li>Download the setup file below.</li>
-      <li>Right-click it and choose <b>Run with PowerShell</b>. On <b>Windows 11</b>, click <b>Show more options</b> first to see it. If Windows asks, choose <b>Run once</b> or <b>Open</b>.</li>
+      <li>Open <b>PowerShell</b> (press the <b>Start</b> key, type <b>PowerShell</b>, press Enter), paste this line and press Enter:<br><code>powershell -ExecutionPolicy Bypass -File "$env:USERPROFILE\Downloads\Add-AmongShield.ps1"</code></li>
       <li>When it says <b>Server successfully added!</b>, start Among Us. <b>AmongShield</b> is already selected. If something goes wrong, the message says what to do.</li>
     </ol>
     <p class="note">Works with every PC version: <b>Steam, Epic Games, itch.io and the Microsoft Store / Xbox app</b>.</p>
+    <p class="note"><b>Why paste a line instead of double-clicking?</b> Windows blocks downloaded scripts from running on their own (the window just flashes and closes). This line runs only this one file, this one time, and doesn't change any Windows settings. Saved it somewhere other than Downloads? Change the path in the line.</p>
     <a class="btn" href="Add-AmongShield.ps1" download>Download Add-AmongShield.ps1</a>
 
     <div class="safe">
@@ -307,6 +308,31 @@ try {
 
     <p class="note">To undo it, just pick North America, Europe or Asia in the game. To remove it completely, copy the backup from <code>%LOCALAPPDATA%\AmongShield-backup</code> back over the server list (or delete <code>regionInfo.json</code> in <code>%USERPROFILE%\AppData\LocalLow\Innersloth\Among Us</code> and the game makes a fresh one).</p>
     <p class="note">It only edits Among Us's server list and backs it up first. <a href="https://www.virustotal.com/gui/file/eff11ee4d9e553b369aa2b47f783736d15b054c46d8559591e5f5ab33fdb545c">Scanned on VirusTotal</a>: 0 of 62 antivirus engines flagged it. Prefer to do it by hand? See the <a href="https://github.com/AmongShieldServer/AmongShield#-how-to-join">manual steps</a>.</p>
+
+    <details>
+      <summary>Script not working? Fixes for common problems</summary>
+      <ul class="note">
+        <li><b>The window flashes and closes, or it says "running scripts is disabled" / "not digitally signed":</b> Windows blocks downloaded scripts when you double-click or use <i>Run with PowerShell</i>. Use the pasted line from step 3 instead.</li>
+        <li><b>"Cannot find path" or "does not exist":</b> the file isn't in Downloads, or it was saved as <code>Add-AmongShield (1).ps1</code>. Easiest fix: in PowerShell type <code>powershell -ExecutionPolicy Bypass -File </code> (with a space at the end), then <b>drag the downloaded file into the PowerShell window</b> to paste its exact location, and press Enter.</li>
+        <li><b>"Among Us is still open":</b> close the game completely. Check the taskbar and the hidden icons next to the clock, or end <b>Among Us</b> in Task Manager (Ctrl + Shift + Esc).</li>
+        <li><b>The browser or antivirus deleted or blocked the download:</b> choose <b>Keep</b> in the browser's download list, or use the <b>No-script option</b> below.</li>
+        <li><b>"Server list wasn't found":</b> start Among Us once, wait for the main menu, close it, and run the line again.</li>
+        <li><b>Something else?</b> The pop-up says what went wrong. <a href="https://github.com/AmongShieldServer/AmongShield/issues">Tell us</a> what it says.</li>
+      </ul>
+    </details>
+
+    <div class="safe">
+      <h3>📄 No-script option</h3>
+      <p class="note" style="margin:0 0 6px">Don't want to run a script? Download a ready-made server list and put it in the game's folder.</p>
+      <ol class="note">
+        <li><b>Close Among Us.</b></li>
+        <li>Download <a href="regionInfo.json" download="regionInfo.json"><b>regionInfo.json</b></a>.</li>
+        <li>Press <b>Win + R</b>, paste <code>%USERPROFILE%\AppData\LocalLow\Innersloth\Among Us</code> and press Enter. The game's folder opens.</li>
+        <li>Drag the downloaded file into that folder and choose <b>Replace</b>. It must be named exactly <code>regionInfo.json</code> (rename it if it says <code>regionInfo (1).json</code>).</li>
+        <li>Start Among Us. <b>AmongShield</b> is already selected.</li>
+      </ol>
+      <p class="note" style="margin:6px 0 0"><b>Note:</b> this replaces your server list with North America, Europe, Asia and AmongShield. If you use other private servers, use the script instead so they're kept. Works with Steam, Epic and itch.io (not the Microsoft Store / Xbox app version).</p>
+    </div>
   </div>
 
   <h2>🍎 Mac</h2>
