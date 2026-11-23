@@ -210,17 +210,18 @@
     <ol>
       <li><b>Close Among Us.</b></li>
       <li>Download the setup file below.</li>
-      <li>Right-click it and choose <b>Run with PowerShell</b>. If Windows asks, choose <b>Run once</b> or <b>Open</b>.</li>
-      <li>Start Among Us. <b>AmongShield</b> is already selected.</li>
+      <li>Right-click it and choose <b>Run with PowerShell</b>. On <b>Windows 11</b>, click <b>Show more options</b> first to see it. If Windows asks, choose <b>Run once</b> or <b>Open</b>.</li>
+      <li>When it says <b>Server successfully added!</b>, start Among Us. <b>AmongShield</b> is already selected. If something goes wrong, the message says what to do.</li>
     </ol>
+    <p class="note">Works with every PC version: <b>Steam, Epic Games, itch.io and the Microsoft Store / Xbox app</b>.</p>
     <a class="btn" href="Add-AmongShield.ps1" download>Download Add-AmongShield.ps1</a>
 
     <div class="safe">
       <h3>🔒 What you're downloading, and why it's safe</h3>
-      <p class="note" style="margin:0 0 6px">It's not a program or a mod. It's a <b>23-line text file</b> (a PowerShell script, about 1.5 KB) that adds AmongShield to the game's server list. That's the same list you pick North America, Europe or Asia from.</p>
+      <p class="note" style="margin:0 0 6px">It's not a program or a mod. It's a <b>59-line text file</b> (a PowerShell script, about 4 KB) that adds AmongShield to the game's server list. That's the same list you pick North America, Europe or Asia from.</p>
       <ul class="yes note">
-        <li>Saves a backup of your server list first (<code>regionInfo.json.backup</code>).</li>
-        <li>Adds one entry, <b>AmongShield</b>, and selects it.</li>
+        <li>Saves a backup of your server list first (in <code>%LOCALAPPDATA%\AmongShield-backup</code>).</li>
+        <li>Adds one entry, <b>AmongShield</b>, and selects it. Your other servers stay as they are.</li>
         <li>You can open it in Notepad and read every line before running it. The full code is below.</li>
       </ul>
       <ul class="no note">
@@ -231,43 +232,81 @@
       </ul>
       <details>
         <summary>Show the full code (every line)</summary>
-<pre><code># Adds the "AmongShield" server to Among Us (PC). Close Among Us first, then right-click -&gt; Run with PowerShell.
-# It only edits Among Us's region list (regionInfo.json); a backup is saved next to it.
+<pre><code># Adds the "AmongShield" server to Among Us on PC: Steam, Epic, itch.io and Microsoft Store / Xbox app.
+# Close Among Us first, then right-click this file -&gt; Run with PowerShell (Windows 11: Show more options first).
+# It only edits Among Us's server list and saves a backup copy first. Nothing is downloaded or installed.
 $ErrorActionPreference = 'Stop'
-$file = Join-Path $env:USERPROFILE 'AppData\LocalLow\Innersloth\Among Us\regionInfo.json'
-if (-not (Test-Path $file)) { Write-Host 'Start Among Us once (to the main menu), close it, then run this again.'; Read-Host 'Press Enter'; exit 1 }
-if (Get-Process 'Among Us' -ErrorAction SilentlyContinue) { Write-Host 'Close Among Us first, then run this again.'; Read-Host 'Press Enter'; exit 1 }
-
-Copy-Item $file "$file.backup" -Force
-$json = Get-Content $file -Raw | ConvertFrom-Json
-$json.Regions = @($json.Regions | Where-Object { $_.Name -ne 'AmongShield' })
-$region = [pscustomobject]@{
-    '$type'        = 'StaticHttpRegionInfo, Assembly-CSharp'
-    Name           = 'AmongShield'
-    PingServer     = 'amongshield.duckdns.org'
-    Servers        = @([pscustomobject]@{ Name = 'http-1'; Ip = 'https://amongshield.duckdns.org'; Port = 443; UseDtls = $false; Players = 0; ConnectionFailures = 0 })
-    TargetServer   = $null
-    TranslateName  = 1003
+Add-Type -AssemblyName System.Windows.Forms
+function Finish($text, [bool]$ok) {
+    Write-Host ''; Write-Host $text -ForegroundColor $(if ($ok) { 'Green' } else { 'Red' })
+    $icon = if ($ok) { 'Information' } else { 'Error' }
+    [void][System.Windows.Forms.MessageBox]::Show($text, 'AmongShield', 'OK', $icon)
+    exit
 }
-$json.Regions += $region
-$json.CurrentRegionIdx = $json.Regions.Count - 1
-($json | ConvertTo-Json -Depth 10 -Compress) | Set-Content $file -Encoding UTF8
-Write-Host 'Done! Start Among Us; the region "AmongShield" is selected. To play on normal servers again, pick North America/Europe/Asia in the region menu.'
-Read-Host 'Press Enter'</code></pre>
+$help = "`n`nStill stuck? Tell us what this message says at github.com/AmongShieldServer/AmongShield/issues"
+try {
+    if (Get-Process 'Among Us' -ErrorAction SilentlyContinue) { Finish "Among Us is still open.`n`nClose Among Us completely, then run this file again." $false }
+    $shield = [pscustomobject]@{
+        '$type'       = 'StaticHttpRegionInfo, Assembly-CSharp'
+        Name          = 'AmongShield'
+        PingServer    = 'amongshield.duckdns.org'
+        Servers       = @([pscustomobject]@{ Name = 'http-1'; Ip = 'https://amongshield.duckdns.org'; Port = 443; UseDtls = $false; Players = 0; ConnectionFailures = 0 })
+        TargetServer  = $null
+        TranslateName = 1003
+    }
+    $files = @()
+    # Steam, Epic, itch.io
+    $normal = Join-Path $env:USERPROFILE 'AppData\LocalLow\Innersloth\Among Us\regionInfo.json'
+    if (Test-Path $normal) { $files += $normal }
+    # Microsoft Store / Xbox app: the server list is a save file with a random name in the game's package folder
+    foreach ($pkg in Get-ChildItem (Join-Path $env:LOCALAPPDATA 'Packages') -Directory -Filter 'Innersloth.AmongUs*' -ErrorAction SilentlyContinue) {
+        foreach ($f in Get-ChildItem (Join-Path $pkg.FullName 'SystemAppData\wgs') -Recurse -File -ErrorAction SilentlyContinue) {
+            if ($f.Length -lt 200KB -and (Get-Content $f.FullName -Raw -Encoding UTF8) -match '^\W*\{\s*"CurrentRegionIdx"') { $files += $f.FullName }
+        }
+    }
+    if ($files.Count -eq 0) { Finish "Among Us's server list wasn't found on this PC.`n`nStart Among Us once and wait for the main menu, close it, then run this file again.$help" $false }
+    $backups = Join-Path $env:LOCALAPPDATA 'AmongShield-backup'
+    New-Item -ItemType Directory -Force $backups | Out-Null
+    $done = 0; $problems = @(); $n = 0
+    foreach ($file in $files) {
+        $n++
+        try {
+            Copy-Item $file (Join-Path $backups "regionInfo-$n.json") -Force
+            try { $list = Get-Content $file -Raw -Encoding UTF8 | ConvertFrom-Json } catch { throw 'DAMAGED' }
+            if ($null -eq $list.Regions) { throw 'DAMAGED' }
+            $list.Regions = @($list.Regions | Where-Object { $_.Name -ne 'AmongShield' }) + $shield
+            $list.CurrentRegionIdx = $list.Regions.Count - 1
+            [IO.File]::WriteAllText($file, ($list | ConvertTo-Json -Depth 10 -Compress), (New-Object Text.UTF8Encoding $false))
+            $done++
+        } catch {
+            $why = if ("$_" -eq 'DAMAGED') { "the server list file is damaged. Delete it, start Among Us once, close it and run this again: $file" }
+                   elseif ($_.Exception -is [UnauthorizedAccessException] -or "$_" -match 'denied|being used') { "Windows didn't allow the change (file in use or protected). Close Among Us and the Xbox app, then try again." }
+                   else { $_.Exception.Message }
+            $problems += $why
+        }
+    }
+    if ($done -gt 0 -and $problems.Count -eq 0) { Finish "Server successfully added!`n`nPlease start Among Us. AmongShield is already selected in the region menu (the globe button).`n`nTo play on normal servers again, pick North America, Europe or Asia there." $true }
+    if ($done -gt 0) { Finish ("AmongShield was added, so you can start Among Us. But one copy of the game couldn't be updated:`n- " + ($problems -join "`n- ") + $help) $true }
+    Finish ("AmongShield couldn't be added:`n- " + ($problems -join "`n- ") + $help) $false
+} catch {
+    Finish ("Something went wrong, so nothing was changed: " + $_.Exception.Message + $help) $false
+}</code></pre>
         <p class="note"><b>In plain English:</b></p>
         <ol class="note">
-          <li><b>Lines 3–6:</b> find the game's server list file and check that Among Us is closed.</li>
-          <li><b>Line 8:</b> make the backup copy.</li>
-          <li><b>Lines 9–10:</b> read the list and remove any old AmongShield entry, so running it twice doesn't add a duplicate.</li>
-          <li><b>Lines 11–19:</b> add the AmongShield entry (its name and address, <code>amongshield.duckdns.org</code>).</li>
-          <li><b>Lines 20–21:</b> select it and save the list.</li>
-          <li><b>Lines 22–23:</b> say "Done!" and wait for you to press Enter.</li>
+          <li><b>Lines 4–12:</b> how messages are shown: a pop-up plus the same text in the window (green when it worked, red with what to do when it didn't).</li>
+          <li><b>Line 14:</b> check that Among Us is closed.</li>
+          <li><b>Lines 15–22:</b> the AmongShield entry: its name and address, <code>amongshield.duckdns.org</code>.</li>
+          <li><b>Lines 23–26:</b> find the server list of the Steam, Epic or itch.io version.</li>
+          <li><b>Lines 27–32:</b> find the server list of the Microsoft Store / Xbox app version (a save file whose text starts with the server list).</li>
+          <li><b>Line 33:</b> if no list was found, ask you to start the game once first.</li>
+          <li><b>Lines 34–53:</b> back up each list, remove any old AmongShield entry (so running it twice is fine), add AmongShield, select it and save. If a file is damaged or locked, it's left alone and the reason is noted.</li>
+          <li><b>Lines 54–59:</b> show "Server successfully added! Please start Among Us." or exactly what went wrong.</li>
         </ol>
       </details>
     </div>
 
-    <p class="note">To undo it, just pick North America, Europe or Asia in the game. To remove it completely, go to <code>%USERPROFILE%\AppData\LocalLow\Innersloth\Among Us</code> and rename <code>regionInfo.json.backup</code> back to <code>regionInfo.json</code>.</p>
-    <p class="note">It only edits Among Us's server list and backs it up first. <a href="https://www.virustotal.com/gui/file/980d659a34a2794d8929b454e98b7e7cc36ddaaafe9916a0e7618b2429f26c9f">Scanned on VirusTotal</a>: 0 of 60 antivirus engines flagged it. Prefer to do it by hand? See the <a href="https://github.com/AmongShieldServer/AmongShield#-how-to-join">manual steps</a>.</p>
+    <p class="note">To undo it, just pick North America, Europe or Asia in the game. To remove it completely, copy the backup from <code>%LOCALAPPDATA%\AmongShield-backup</code> back over the server list (or delete <code>regionInfo.json</code> in <code>%USERPROFILE%\AppData\LocalLow\Innersloth\Among Us</code> and the game makes a fresh one).</p>
+    <p class="note">It only edits Among Us's server list and backs it up first. You can also check it on <a href="https://www.virustotal.com/gui/file/eff11ee4d9e553b369aa2b47f783736d15b054c46d8559591e5f5ab33fdb545c">VirusTotal</a>. Prefer to do it by hand? See the <a href="https://github.com/AmongShieldServer/AmongShield#-how-to-join">manual steps</a>.</p>
   </div>
 
   <h2>✨ What you get</h2>
