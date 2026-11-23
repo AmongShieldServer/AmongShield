@@ -15,8 +15,8 @@
   A free community server for <b>Among Us</b> where cheat menus can't see who the impostor is,<br>
   <b>can't zoom out or see through walls</b>, and cheaters get kicked and called out in chat.<br><br>
   You play the normal game. You just pick the <b>AmongShield</b> region instead of North America, Europe or Asia.<br>
-  Works on <b>PC, Android and iPhone</b>.<br><br>
-  <a href="https://amongshieldserver.github.io/AmongShield/"><b>👉 Quick setup page (PC, Android, iPhone)</b></a>
+  Works on <b>PC, Mac, Android and iPhone</b>.<br><br>
+  <a href="https://amongshieldserver.github.io/AmongShield/"><b>👉 Quick setup page (PC, Mac, Android, iPhone)</b></a>
 </p>
 
 ---
@@ -129,8 +129,25 @@ If the game won't load the regions afterwards, a comma or bracket is missing. De
 
 </details>
 
-### 📱 Phone (Android, iPhone)
+### 🍎 Mac
 
+**Windows version through CrossOver, Whisky, Wine or Porting Kit:**
+
+1. **Quit Among Us.**
+2. Download [`Add-AmongShield-Mac.command`](Add-AmongShield-Mac.command) (open it, then click the download button ⤓).
+3. Open **Terminal** (press ⌘ Space, type `Terminal`, press Enter), paste this line and press Enter:
+   ```
+   bash ~/Downloads/Add-AmongShield-Mac.command
+   ```
+4. When it says **Server successfully added!**, start Among Us. **AmongShield** is already selected.
+
+It only edits Among Us's server list, keeps your other servers and saves a backup first (in `~/Library/Application Support/AmongShield-backup`). Feel free to read it before running it.
+
+**App Store version (the iPhone/iPad app) on an Apple Silicon Mac:** open Among Us, then click **Add AmongShield to Among Us** on the [setup page](https://amongshieldserver.github.io/AmongShield/).
+
+Mac support is new. If it doesn't work for you, open an [issue](../../issues) and say what the message says.
+
+### 📱 Phone (Android, iPhone)
 1. **Open Among Us** and wait for the main menu. Leave it running.
 2. On your phone, open **[amongshieldserver.github.io/AmongShield](https://amongshieldserver.github.io/AmongShield/)** and tap **Add AmongShield to Among Us**.
 3. Back in Among Us, tap the **region button** (globe, bottom right) and pick **AmongShield**.
@@ -170,7 +187,7 @@ Pick North America, Europe or Asia in the region menu. To remove AmongShield com
 - Only games on the AmongShield region are protected. Official servers work like before.
 - 👻 **Ghosts:** after you die, haunting a player may show the wrong role. That's the shield doing its job. The game result note after each game always shows who the impostors really were.
 - 💬 Chat messages over 100 characters, or with line breaks or formatting codes, are blocked.
-- 🎮 Console players (PlayStation, Xbox, Switch) can't join: consoles can't use custom servers.
+- 🎮 Console players (PlayStation, Xbox, Switch) can't join: consoles can't use custom servers. Mac players can (see 🍎 Mac above).
 - This is a small free server. If it's full or down, try again later.
 - Found a bug or got kicked by mistake? Open an [issue](../../issues) and say what happened and roughly when.
 
