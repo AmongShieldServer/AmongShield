@@ -4,6 +4,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/mods-none%20needed-4fd1c5?style=for-the-badge" alt="No mods needed">
+  <img src="https://img.shields.io/badge/anti--zoom%20fog-NEW-805ad5?style=for-the-badge" alt="Anti-zoom fog: new">
   <img src="https://img.shields.io/badge/price-free-38a169?style=for-the-badge" alt="Free">
   <img src="https://img.shields.io/badge/PC-ready-3182ce?style=for-the-badge&logo=windows&logoColor=white" alt="PC ready">
   <img src="https://img.shields.io/badge/Android%20%26%20iPhone-ready-805ad5?style=for-the-badge" alt="Android and iPhone ready">
@@ -12,7 +13,7 @@
 
 <p align="center">
   A free community server for <b>Among Us</b> where cheat menus can't see who the impostor is,<br>
-  and cheaters get kicked and called out in chat.<br><br>
+  <b>can't zoom out or see through walls</b>, and cheaters get kicked and called out in chat.<br><br>
   You play the normal game. You just pick the <b>AmongShield</b> region instead of North America, Europe or Asia.<br>
   Works on <b>PC, Android and iPhone</b>.<br><br>
   <a href="https://amongshieldserver.github.io/AmongShield/"><b>👉 Quick setup page (PC, Android, iPhone)</b></a>
@@ -22,6 +23,25 @@
 
 ## ✨ What it does
 
+### 🌫️ Anti-zoom fog <sup>NEW</sup>
+**Zoom hacks and wallhacks see an empty map.**
+
+Most anti-cheats try to catch a cheater after the damage is done. AmongShield makes sure the information never reaches the cheater in the first place: the server only sends your game the positions of players **you could actually see**, inside your vision and not hidden behind a wall.
+
+<p align="center"><img src="assets/fog.svg" alt="A zoomed-out cheat sees every player on other servers. On AmongShield it only sees the players inside its own vision." width="85%"></p>
+
+- **Stops zoom-out, see-through-walls and player radar** from cheat menus like MalumMenu. There's nothing to show them.
+- **Honest players see nothing different.** People step out of the shadows exactly like they always do.
+- **Admin, cameras, binoculars, Tracker and Detective** still work: whoever is using them gets everyone's real position.
+- **On in every lobby.** The host can turn it off:
+
+| Command | What it does |
+|---|---|
+| `/fog off` | Turn the fog off for this lobby (host only, in the lobby) |
+| `/fog on` | Turn it back on |
+| `/fog` | Show whether it's on |
+
+AmongShield is the only Among Us anti-cheat that can do this right now.
 ### 🛡️ ESP protection
 Cheat menus that show roles are fed fake impostors. Every cheater sees several impostors and can't tell which ones are real. Honest players see nothing different.
 
@@ -126,7 +146,7 @@ Pick **North America**, **Europe** or **Asia** in the region menu. AmongShield s
 ## ❓ FAQ
 
 **Does it work against MalumMenu, Sicko Menu and other cheat menus?**
-Yes, that's what it's built for. Role ESP from menus like MalumMenu sees fake impostors instead of the real ones. Cheats like forced sabotage, instant tasks, cameras from across the map, long-range kills, ghost actions and fake venting get the cheater kicked. Speed hacks, teleports, meeting cheats and vent cheats are blocked and the cheater is named in chat, and menus that announce themselves (Sicko Menu, AmongUsMenu, KillNetwork, ModMenuCrew) are kicked on sight. No anticheat catches everything, and the shield hides roles but not positions.
+Yes, that's what it's built for. Role ESP from menus like MalumMenu sees fake impostors instead of the real ones. Cheats like forced sabotage, instant tasks, cameras from across the map, long-range kills, ghost actions and fake venting get the cheater kicked. Speed hacks, teleports, meeting cheats and vent cheats are blocked and the cheater is named in chat, and menus that announce themselves (Sicko Menu, AmongUsMenu, KillNetwork, ModMenuCrew) are kicked on sight. Zoom hacks, wallhacks and player radar see only the players you could see anyway, thanks to the anti-zoom fog. No anticheat catches everything.
 
 **Is the PC script safe?**
 It's about 20 lines of plain text that only edits Among Us's server list (`regionInfo.json`) and saves a backup first. Open it in Notepad and read it before running, or skip it and follow the manual steps instead. It's also been [scanned on VirusTotal](https://www.virustotal.com/gui/file/980d659a34a2794d8929b454e98b7e7cc36ddaaafe9916a0e7618b2429f26c9f): 0 of 60 antivirus engines flagged it.
@@ -148,7 +168,6 @@ Pick North America, Europe or Asia in the region menu. To remove AmongShield com
 ## 💡 Good to know
 
 - Only games on the AmongShield region are protected. Official servers work like before.
-- The shield hides **roles**, not positions. A cheater can still see where people are, but not who the impostor is.
 - 👻 **Ghosts:** after you die, haunting a player may show the wrong role. That's the shield doing its job. The game result note after each game always shows who the impostors really were.
 - 💬 Chat messages over 100 characters, or with line breaks or formatting codes, are blocked.
 - 🎮 Console players (PlayStation, Xbox, Switch) can't join: consoles can't use custom servers.
