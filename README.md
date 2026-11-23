@@ -104,10 +104,38 @@ If the new host doesn't come back from the end screen within 20 seconds, the nex
 
 1. **Close Among Us.**
 2. Download [`Add-AmongShield.ps1`](Add-AmongShield.ps1) (open it, then click the download button ⤓).
-3. Right-click the file and choose **Run with PowerShell**. On **Windows 11**, click **Show more options** first to see it. If Windows asks whether to run it, choose **Run once** or **Open**.
+3. Open **PowerShell** (press the Start key, type `PowerShell`, press Enter), paste this line and press Enter:
+   ```
+   powershell -ExecutionPolicy Bypass -File "$env:USERPROFILE\Downloads\Add-AmongShield.ps1"
+   ```
+   Windows blocks downloaded scripts from running by double-click or "Run with PowerShell" (the window just flashes and closes). This line runs only this one file, this one time, and doesn't change any Windows settings. Saved it somewhere other than Downloads? Change the path.
 4. When it says **Server successfully added!**, start Among Us. The **AmongShield** region is already selected. Create or join a game as usual.
 
 It works with every PC version: Steam, Epic Games, itch.io and the Microsoft Store / Xbox app. The script only edits Among Us's server list and saves a backup of it first (in `%LOCALAPPDATA%\AmongShield-backup`). If anything goes wrong, a message tells you what to do. It's about 60 lines, so feel free to read it before running it.
+
+#### 🩹 Script not working?
+
+- **The window flashes and closes, or it says "running scripts is disabled" / "not digitally signed":** Windows blocks downloaded scripts when you double-click or use *Run with PowerShell*. Use the pasted line from step 3 instead.
+- **"Cannot find path" or "does not exist":** the file isn't in Downloads, or it was saved as `Add-AmongShield (1).ps1`. Easiest fix: in PowerShell type `powershell -ExecutionPolicy Bypass -File ` (with a space at the end), then **drag the downloaded file into the PowerShell window** to paste its exact location, and press Enter.
+- **"Among Us is still open":** close the game completely. Check the taskbar and the hidden icons next to the clock, or end **Among Us** in Task Manager (Ctrl + Shift + Esc).
+- **The browser or antivirus deleted or blocked the download:** choose **Keep** in the browser's download list, or use the no-script option below.
+- **"Server list wasn't found":** start Among Us once, wait for the main menu, close it, and run the line again.
+- **Something else?** The pop-up says what went wrong. Open an [issue](../../issues) and say what it says.
+
+### 📄 PC: no-script option
+
+Don't want to run a script? Download a ready-made server list and put it in the game's folder.
+
+1. **Close Among Us.**
+2. Download [`regionInfo.json`](regionInfo.json) (open it, then click the download button ⤓).
+3. Press `Win + R`, paste this and press Enter (the game's folder opens):
+   ```
+   %USERPROFILE%\AppData\LocalLow\Innersloth\Among Us
+   ```
+4. Drag the downloaded file into that folder and choose **Replace**. It must be named exactly `regionInfo.json` (rename it if it says `regionInfo (1).json`).
+5. Start Among Us. **AmongShield** is already selected.
+
+**Note:** this replaces your server list with North America, Europe, Asia and AmongShield. If you use other private servers, use the script instead so they're kept. Works with Steam, Epic and itch.io (not the Microsoft Store / Xbox app version).
 
 ### 🛠️ PC: do it yourself (no script)
 
