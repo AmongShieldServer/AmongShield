@@ -8,7 +8,7 @@
   <img src="https://img.shields.io/badge/price-free-38a169?style=for-the-badge" alt="Free">
   <img src="https://img.shields.io/badge/PC-ready-3182ce?style=for-the-badge&logo=windows&logoColor=white" alt="PC ready">
   <img src="https://img.shields.io/badge/Android%20%26%20iPhone-ready-805ad5?style=for-the-badge" alt="Android and iPhone ready">
-  <a href="https://www.virustotal.com/gui/file/980d659a34a2794d8929b454e98b7e7cc36ddaaafe9916a0e7618b2429f26c9f"><img src="https://img.shields.io/badge/VirusTotal-0%2F60%20clean-2ea44f?style=for-the-badge&logo=virustotal&logoColor=white" alt="VirusTotal: 0/60 clean"></a>
+  <a href="https://www.virustotal.com/gui/file/eff11ee4d9e553b369aa2b47f783736d15b054c46d8559591e5f5ab33fdb545c"><img src="https://img.shields.io/badge/VirusTotal-report-2ea44f?style=for-the-badge&logo=virustotal&logoColor=white" alt="VirusTotal report"></a>
 </p>
 
 <p align="center">
@@ -100,14 +100,14 @@ If the new host doesn't come back from the end screen within 20 seconds, the nex
 
 > **Everyone in a lobby needs the AmongShield region, the host and all players.**
 
-### 💻 PC (Steam, Epic, Microsoft Store): easy way
+### 💻 PC (Steam, Epic, itch.io, Microsoft Store / Xbox app): easy way
 
 1. **Close Among Us.**
 2. Download [`Add-AmongShield.ps1`](Add-AmongShield.ps1) (open it, then click the download button ⤓).
-3. Right-click the file and choose **Run with PowerShell**. If Windows asks whether to run it, choose **Run once** or **Open**.
-4. Start Among Us. The **AmongShield** region is already selected. Create or join a game as usual.
+3. Right-click the file and choose **Run with PowerShell**. On **Windows 11**, click **Show more options** first to see it. If Windows asks whether to run it, choose **Run once** or **Open**.
+4. When it says **Server successfully added!**, start Among Us. The **AmongShield** region is already selected. Create or join a game as usual.
 
-The script only edits Among Us's server list and saves a backup of it first (`regionInfo.json.backup`). It's about 20 lines, so feel free to read it before running it.
+It works with every PC version: Steam, Epic Games, itch.io and the Microsoft Store / Xbox app. The script only edits Among Us's server list and saves a backup of it first (in `%LOCALAPPDATA%\AmongShield-backup`). If anything goes wrong, a message tells you what to do. It's about 60 lines, so feel free to read it before running it.
 
 ### 🛠️ PC: do it yourself (no script)
 
@@ -149,7 +149,7 @@ Pick **North America**, **Europe** or **Asia** in the region menu. AmongShield s
 Yes, that's what it's built for. Role ESP from menus like MalumMenu sees fake impostors instead of the real ones. Cheats like forced sabotage, instant tasks, cameras from across the map, long-range kills, ghost actions and fake venting get the cheater kicked. Speed hacks, teleports, meeting cheats and vent cheats are blocked and the cheater is named in chat, and menus that announce themselves (Sicko Menu, AmongUsMenu, KillNetwork, ModMenuCrew) are kicked on sight. Zoom hacks, wallhacks and player radar see only the players you could see anyway, thanks to the anti-zoom fog. No anticheat catches everything.
 
 **Is the PC script safe?**
-It's about 20 lines of plain text that only edits Among Us's server list (`regionInfo.json`) and saves a backup first. Open it in Notepad and read it before running, or skip it and follow the manual steps instead. It's also been [scanned on VirusTotal](https://www.virustotal.com/gui/file/980d659a34a2794d8929b454e98b7e7cc36ddaaafe9916a0e7618b2429f26c9f): 0 of 60 antivirus engines flagged it.
+It's about 60 lines of plain text that only edits Among Us's server list (`regionInfo.json`) and saves a backup first. Open it in Notepad and read it before running, or skip it and follow the manual steps instead. You can also check it on [VirusTotal](https://www.virustotal.com/gui/file/eff11ee4d9e553b369aa2b47f783736d15b054c46d8559591e5f5ab33fdb545c).
 
 **Is this a mod? Can it get my account in trouble?**
 It's not a mod. Nothing in the game is changed. Among Us has a built-in option for custom servers (regions), and that's all this uses. Your game files stay untouched.
@@ -161,7 +161,7 @@ What any Among Us server sees: your in-game name, your platform (PC, phone, etc.
 It's a small community project, run for free. No ads, no payments, no data selling.
 
 **How do I stop using it?**
-Pick North America, Europe or Asia in the region menu. To remove AmongShield completely on PC, restore `regionInfo.json.backup` (rename it to `regionInfo.json`).
+Pick North America, Europe or Asia in the region menu. To remove AmongShield completely on PC, copy the backup from `%LOCALAPPDATA%\AmongShield-backup` back, or delete `regionInfo.json` and the game makes a fresh one.
 
 ---
 
